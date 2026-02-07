@@ -3,8 +3,16 @@ use minifb::{Key, ScaleMode, Window, WindowOptions};
 const WIDTH: usize = 1280;
 const HEIGHT: usize = 720;
 
+/// Encodes color from u8 RGB to 32-bit pixel.
+/// See documentation of window.update_with_buffer from Minifb for details.
+fn from_u8_rgb(r: u8, g: u8, b: u8) -> u32 {
+    let (r, g, b) = (r as u32, g as u32, b as u32);
+    (r << 16) | (g << 8) | b
+}
+
 fn main() {
     let mut buffer = vec![0u32; WIDTH * HEIGHT];
+    let azure_blue = from_u8_rgb(0, 127, 255);
 
     let mut window = Window::new(
         "Test - Press ESC to exit",
@@ -28,7 +36,7 @@ fn main() {
         }
 
         for pixel in buffer.iter_mut() {
-            *pixel = 255;
+            *pixel = azure_blue;
         }
 
         window
