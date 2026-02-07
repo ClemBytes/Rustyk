@@ -1,5 +1,6 @@
 use minifb::{Key, ScaleMode, Window, WindowOptions};
 
+/// Window initial size
 const WIDTH: usize = 1280;
 const HEIGHT: usize = 720;
 
@@ -8,6 +9,18 @@ const HEIGHT: usize = 720;
 fn from_u8_rgb(r: u8, g: u8, b: u8) -> u32 {
     let (r, g, b) = (r as u32, g as u32, b as u32);
     (r << 16) | (g << 8) | b
+}
+
+struct Circle {
+    x: i32,
+    y: i32,
+    radius: u32,
+    // vx: i32,
+    // vy: i32,
+}
+
+impl Circle {
+    fn draw(&mut self, buffer: &mut [u32]) {}
 }
 
 fn main() {
